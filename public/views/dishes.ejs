@@ -1,0 +1,77 @@
+<%- contentFor('body') %>
+<section id='dishes' class='wrapper'>
+  <h1 class='title'>Pratos</h1>
+
+  <form>
+    <button>
+      Cadastrar novo Prato
+    </button>
+  </form>
+
+  <div class='table'>
+    <p>Restaurante</p>
+    <p>Prato</p>
+    <p>Preço</p>
+    <ul>
+      <li>
+        <div class='content'>
+          <div class='buttons'>
+            <button>
+              <img src='dist/img/clear.svg'>
+            </button>
+            <button>
+              <img src='dist/img/edit.svg'>
+            </button>
+          </div>
+
+          <div class='text'>
+            <span>Lorem daidawidawiwadi iawdidwai didwai dwaidwaiawdi dadwd awdw dawdawdwadawdaw aw ddwa 123321312 3213213 21321132132 </span>
+          </div>
+          <div class='text'>
+            <span>Lorem daidawidawiwadi iawdidwai didwai dwaidwaiawdi</span>
+          </div>
+          <div class='text'>
+            <span>Lorem daidawidawiwadi iawdidwai didwai dwaidwaiawdi</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+  <section class="popup">
+    <div class="container">
+        <div class="inner-content">
+            <div class="wrapper">
+              <h1>Cadastro de Pratos</h1>
+
+              <form>
+                <p>
+                  <select name="restaurant-list">
+                    <option value=''>Selecione um restaurante</option>
+                  </select>
+                </p>
+
+                <p>
+                  <input type="text" name="add" id="add" ng-model="restaurant.add" ng-required="true"/>
+                  <label for="name" class="placeholder">Nome do Restaurante</label>
+                </p>
+
+                <p>
+                  <input type="text" name="add" id="add" ng-model="restaurant.add" ng-required="true"/>
+                  <label for="name" class="placeholder">Preço (R$)</label>
+                </p>
+
+                <button class='cancel'>
+                  Cancelar
+                </button>
+
+                <button class='save'>
+                  Salvar
+                </button>
+              </form>
+            </div>
+        </div>
+    </div>
+  </section>
+</section>

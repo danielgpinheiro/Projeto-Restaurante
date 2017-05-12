@@ -1,0 +1,159 @@
+@import 'reset';
+@import 'fonts';
+
+//Fonts Variables
+$regular: rubikregular, Helvetica, Arial, sans-serif;
+$medium_italic: rubikmedium_italic, Helvetica, Arial, sans-serif;
+$medium: rubikmedium, Helvetica, Arial, sans-serif;
+$light_italic: rubiklight_italic, Helvetica, Arial, sans-serif;
+$light: rubiklight, Helvetica, Arial, sans-serif;
+$italic: rubikitalic, Helvetica, Arial, sans-serif;
+$bold_italic: rubikbold_italic, Helvetica, Arial, sans-serif;
+$bold: rubikbold, Helvetica, Arial, sans-serif;
+$black_italic: rubikblack_italic, Helvetica, Arial, sans-serif;
+$black: rubikblack, Helvetica, Arial, sans-serif;
+
+//Classes e seletores genéricos
+html, body { max-width: 1920px; margin: 0 auto;
+    @media all and (max-width: 997px) { -webkit-overflow-scrolling: touch; }
+}
+
+main { overflow: hidden;
+  @media all and (min-width: 998px) { margin: 0 auto; }
+}
+main, .wrapper, .transparent-img { width: 100%; display: block; }
+
+//Cabeçalho
+header {
+  ul { height: 60px; display: flex; flex-direction: row; justify-content: flex-start; background: #4CAF50;
+    li { display: block; margin: 0 20px;
+      &.active { border-bottom: solid 2px #fff;
+        a { font-family: $medium; }
+      }
+
+      a { font: 16px/60px $regular; color: #fff; }
+    }
+  }
+}
+
+//Home
+section#home { display: flex; height: 500px; align-items: center; justify-content: center; flex-direction: column;
+  h1  { font: 40px/40px $regular; color: #607D8B; letter-spacing: -1px; }
+  img { width: 250px; margin-bottom: 30px; }
+}
+
+//Restaurantes
+section#restaurant, section#dishes { display: flex; flex-direction: column; justify-content: center; width: 80%; margin: 0 auto; padding: 50px 0;
+  h1 { font: 40px/40px $regular; color: #607D8B; margin-bottom: 100px; letter-spacing: -1px; }
+
+  form { width: 45%; display: block; padding-right: 38px; position: relative; margin-bottom: 100px;
+    p { width: 100%; display: block; border-bottom: solid 1px #dadada; position: relative; }
+
+    input, label.placeholder { font: 16px/24px $light; color: #777777; }
+    input { display: block; width: 100%; height: 24px; }
+    label.placeholder { pointer-events: none; position: absolute; bottom: 0; left: 0; }
+
+    input:focus ~ label.placeholder, input:valid ~ label.placeholder { left: -10px;
+      transform:         scale(0.65, 0.65) translate(0, -31px);
+      -webkit-transform: scale(0.65, 0.65) translate(0, -31px);
+      -moz-transform:    scale(0.65, 0.65) translate(0, -31px);
+      -ms-transform:     scale(0.65, 0.65) translate(0, -31px);
+
+      transition: transform 0.3s ease;
+    }
+
+    button { font: 17px/40px $regular; color: #4CAF50; background: #fff; letter-spacing: -1px; border: solid 2px #4CAF50; border-radius: 40px; padding: 0 24px; margin: 40px 9.8% 0 0; position: relative;
+      transition: background 0.4s ease, color 0.4s ease, fill 0.4s ease, border-color 0.4s ease;
+    }
+  }
+
+  .table { border: solid 1px #dadada;
+    &, ul { width: 100%; display: block; }
+
+    p { font: 16px/16px $medium; color: #777777; letter-spacing: -1px; margin-bottom: 5px; margin-left: 110px; }
+
+    ul {
+      li { width: 100%;
+        &:nth-child(odd) { background: #fff; }
+        &:nth-child(even) { background: lighten(#aaa, 20%); }
+
+        .content { width: 30%; height: 60px; display: flex; justify-content: flex-start; align-items: center;
+          span { font: 14px/14px $regular; color: #777777; }
+
+          .buttons { height: 100%; width: 70px; display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-right: 30px; margin-left: 10px;
+            img { display: block; width: 30px; height: 30px; }
+          }
+        }
+      }
+    }
+  }
+
+  section.popup {
+    .wrapper { padding: 20px;
+      h1 { font-size: 25px; line-height: 25px; margin-bottom: 50px; }
+
+      form {
+        input:focus ~ label.placeholder, input:valid ~ label.placeholder { left: -25px; }
+        button.cancel { color: #f44336; background: #fff; letter-spacing: -1px; border: solid 2px #f44336; }
+      }
+    }
+  }
+}
+
+section#dishes {
+  h1 { margin-bottom: 30px; }
+  .table {
+    p { float: left; width: 190px; }
+
+    ul { clear: both;
+      li .content { width: 100%; height: auto;
+        .text { width: 300px; display: block; float: left; }
+      }
+    }
+  }
+
+  section.popup {
+    .wrapper { padding: 20px;
+      h1 { font-size: 25px; line-height: 25px; margin-bottom: 50px; }
+
+      form {
+        p { margin-bottom: 50px; }
+
+        select { font: 16px/40px $light; color: #80828e; width: 100%; height: 40px; padding-right: 5px; border: none; background: url(../img/icon-select.png) #FFF top right no-repeat; background-size: auto 100%; padding-right: 35px; }
+
+        input:focus ~ label.placeholder, input:valid ~ label.placeholder { left: -25px; }
+        button.cancel { color: #f44336; background: #fff; letter-spacing: -1px; border: solid 2px #f44336; }
+      }
+    }
+  }
+}
+
+//Popup
+section.popup { width: 100%; height: 100%; top: 0; left: 0; position: fixed; overflow: hidden; z-index: 338; background: rgba(#000, 0.2); transition: opacity 0.3s ease; display: block; opacity: 1; display: none; opacity: 0;
+    &.open { opacity: 1; }
+
+    .container { top: 50%; left: 0; width: 100%; position: absolute; margin-top: -237px !important;
+        &, .inner-content { margin: 0 auto; display: block; }
+
+        .inner-content { width: 95%; max-width: 846px; background: #fff; position: relative; transition: transform 0.3s ease; transform: scale(1.1,1.1); will-change: transform;
+            &.open { transform: scale(1.0,1.0); }
+            &.cases-size {
+                @media all and (min-width: 998px) { max-width: 600px; }
+            }
+
+            button.close { font: 17px/34px $regular; height: 34px; color: #FFF; padding: 0 10px; background: rgba(#fff, 0.3);
+                border-radius: 40px; position: absolute; top: -45px; right: 0; z-index: 2; transition: background 0.3s ease;
+
+                @media all and (min-width: 998px) { right: 20px; }
+
+                &:active { background: rgba(#000, 0.6); }
+            }
+        }
+    }
+}
+
+//Hovers
+@media all and (min-width: 998px) {
+  section#restaurant form button:hover, section#dishes form button:hover { color: #fff; background: #4CAF50; }
+  section#restaurant form button.cancel:hover, section#dishes form button.cancel:hover { color: #fff !important; background: #f44336 !important; }
+}

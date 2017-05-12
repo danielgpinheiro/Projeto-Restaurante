@@ -1,0 +1,61 @@
+<%- contentFor('body') %>
+<section id='restaurant' class='wrapper'>
+  <h1 class='title'>Restaurantes</h1>
+
+  <form>
+    <p>
+      <input type="text" name="query" id="query" ng-model="restaurant.query" ng-required="true"/>
+      <label for="name" class="placeholder">Pesquisar</label>
+    </p>
+
+    <button>
+      Cadastrar novo Restaurante
+    </button>
+  </form>
+
+  <div class='table'>
+    <ul>
+      <li>
+        <p>Restaurantes</p>
+        <div class='content'>
+          <div class='buttons'>
+            <button>
+              <img src='dist/img/clear.svg'>
+            </button>
+            <button>
+              <img src='dist/img/edit.svg'>
+            </button>
+          </div>
+
+          <span>Registro 1</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+  <section class="popup">
+    <div class="container">
+        <div class="inner-content">
+            <div class="wrapper">
+              <h1>Cadastro de Restaurante</h1>
+
+              <form>
+                <p>
+                  <input type="text" name="add" id="add" ng-model="restaurant.add" ng-required="true"/>
+                  <label for="name" class="placeholder">Nome do Restaurante</label>
+                </p>
+
+                <button class='cancel'>
+                  Cancelar
+                </button>
+
+                <button class='save'>
+                  Salvar
+                </button>
+              </form>
+            </div>
+        </div>
+    </div>
+  </section>
+</section>
