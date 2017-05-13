@@ -92,6 +92,7 @@ gulp.task('nodemon', (cb) => {
 	return nodemon({
     script: 'app.js',
     exec: 'babel-node',
+    ignore: './public/'
 	}).on('start', () => {
 		if (!started) {
 			cb();

@@ -18,7 +18,7 @@ var popupBehavior = function(action) {
 
         setTimeout(function() {
             $("html, body").removeClass("overflowHidden");
-            $("section.popup").css({"display": "none"});
+            $("sectiosn.popup").css({"display": "none"});
         }, 300);
     }
 
