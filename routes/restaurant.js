@@ -34,6 +34,14 @@ export default(app) => {
           res.send(error).status(500).end()
         })
     })
+    .delete((req, res) => {
+      restaurantController.delete(req.params)
+        .then(result => res.json(result))
+        .catch(error => {
+          console.log(error)
+          res.send(error).status(500).end()
+        })
+    })
 
   app.route('/restaurant_data')
     .get((req, res) => {

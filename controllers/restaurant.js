@@ -49,11 +49,14 @@ class RestaurantController {
       .then(result => defaultResponse(result))
       .catch(error => errorResponse(error.message));
   }
-  //findByIdAndUpdate
 
+  delete(params) {
+    let id = params.id
 
-  //deletar
-//  remove
+    return Restaurant.remove({ "_id": id })
+      .then(result => defaultResponse(result))
+      .catch(error => errorResponse(error.message));
+  }
 }
 
 export default RestaurantController

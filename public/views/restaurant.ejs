@@ -1,33 +1,33 @@
 <%- contentFor('body') %>
-<section id='restaurant' class='wrapper'>
+<section id='restaurant' class='wrapper' ng-controller="restaurantController">
   <h1 class='title'>Restaurantes</h1>
 
   <form>
     <p>
-      <input type="text" name="query" id="query" ng-model="restaurant.query" ng-required="true"/>
+      <input type="text" name="query" id="query" ng-model="restaurant.query" required/>
       <label for="name" class="placeholder">Pesquisar</label>
     </p>
 
-    <button>
+    <button id="open-popup">
       Cadastrar novo Restaurante
     </button>
   </form>
 
-  <div class='table'>
+  <div class='table' ng-show="items">
     <ul>
-      <li>
+      <li ng-repeat="item in items | filter: restaurant.query | orderBy: name">
         <p>Restaurantes</p>
         <div class='content'>
           <div class='buttons'>
-            <button>
+            <button ng-click="delete(item._id)">
               <img src='dist/img/clear.svg'>
             </button>
-            <button>
+            <button ng-click="edit(item._id, item.name)">
               <img src='dist/img/edit.svg'>
             </button>
           </div>
 
-          <span>Registro 1</span>
+          <span>{{ item.name }}</span>
         </div>
       </li>
     </ul>
@@ -40,18 +40,22 @@
             <div class="wrapper">
               <h1>Cadastro de Restaurante</h1>
 
-              <form>
+              <form name='addForm'>
                 <p>
-                  <input type="text" name="add" id="add" ng-model="restaurant.add" ng-required="true"/>
+                  <input type="text" name="add" id="add" ng-model="restaurant.name" ng-required="true"/>
                   <label for="name" class="placeholder">Nome do Restaurante</label>
                 </p>
 
-                <button class='cancel'>
+                <button class='cancel' ng-click='cancel($event)'>
                   Cancelar
                 </button>
 
-                <button class='save'>
+                <button class='save' ng-click='add(restaurant)' ng-show='!restaurant._id'>
                   Salvar
+                </button>
+
+                <button class='save' ng-click='update(restaurant)' ng-show='restaurant._id'>
+                  Alterar
                 </button>
               </form>
             </div>

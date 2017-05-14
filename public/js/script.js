@@ -18,7 +18,7 @@ var popupBehavior = function(action) {
 
         setTimeout(function() {
             $("html, body").removeClass("overflowHidden");
-            $("sectiosn.popup").css({"display": "none"});
+            $("section.popup").css({"display": "none"});
         }, 300);
     }
 
@@ -27,4 +27,16 @@ var popupBehavior = function(action) {
 
 $(document).ready(function() {
     picturefill();
+
+    $("#open-popup").click(function(e) {
+      e.preventDefault();
+
+      popupBehavior('open')
+    })
+
+    $("#close-popup").click(function(e) {
+      e.preventDefault();
+
+      popupBehavior('close')
+    })
 });
