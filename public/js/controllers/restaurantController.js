@@ -16,8 +16,7 @@ app.controller("restaurantController", function($scope, $http, $timeout, config,
 
 		$http.post('/restaurant', restaurant).then(function(response, status) {
 			$scope.getAll()
-			delete $scope.restaurant;
-			popupBehavior('close')
+			$scope.cancel()
 		}, function(e) {
 			alert('Ocorreu um erro, tente novamente')
 			console.log(e)
@@ -31,7 +30,6 @@ app.controller("restaurantController", function($scope, $http, $timeout, config,
 	}
 
 	$scope.update = function(data) {
-		console.log(data)
 		var id = data._id
 		var restaurant = {
 			"name": data.name,
@@ -40,8 +38,7 @@ app.controller("restaurantController", function($scope, $http, $timeout, config,
 
 		$http.put('/restaurant/'+id, restaurant).then(function(response, status) {
 			$scope.getAll()
-			delete $scope.restaurant;
-			popupBehavior('close')
+			$scope.cancel()
 		}, function(e) {
 			alert('Ocorreu um erro, tente novamente')
 			console.log(e)
@@ -57,7 +54,8 @@ app.controller("restaurantController", function($scope, $http, $timeout, config,
 
 	$scope.cancel = function(e) {
 		e.preventDefault()
-		delete $scope.restaurant;
+		$scope.restaurant.name = null
+		$scope.restaurant._id = null
 		popupBehavior('close')
 	}
 

@@ -40,7 +40,7 @@
             <div class="wrapper">
               <h1>Cadastro de Restaurante</h1>
 
-              <form name='addForm'>
+              <form name='restaurantForm'>
                 <p>
                   <input type="text" name="add" id="add" ng-model="restaurant.name" ng-required="true"/>
                   <label for="name" class="placeholder">Nome do Restaurante</label>
@@ -50,11 +50,11 @@
                   Cancelar
                 </button>
 
-                <button class='save' ng-click='add(restaurant)' ng-show='!restaurant._id'>
+                <button class='save' ng-class="{ invalid: restaurantForm.$invalid }" ng-click='add(restaurant)' ng-show='!restaurant._id'>
                   Salvar
                 </button>
 
-                <button class='save' ng-click='update(restaurant)' ng-show='restaurant._id'>
+                <button class='save' ng-class="{ invalid: restaurantForm.$invalid }" ng-click='update(restaurant)' ng-show='restaurant._id'>
                   Alterar
                 </button>
               </form>

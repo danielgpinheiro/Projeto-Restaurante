@@ -23,6 +23,8 @@ main { overflow: hidden;
 }
 main, .wrapper, .transparent-img { width: 100%; display: block; }
 
+.invalid { pointer-events: none; opacity: 0.5; }
+
 //Cabeçalho
 header {
   ul { height: 60px; display: flex; flex-direction: row; justify-content: flex-start; background: #4CAF50;

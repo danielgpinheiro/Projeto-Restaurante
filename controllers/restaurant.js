@@ -40,12 +40,12 @@ class RestaurantController {
   update(data, params) {
     let id = params.id
 
-    let teste = {
+    let restaurantData = {
       "name": data.name,
       "timestamp": data.timestamp
     }
 
-    return Restaurant.findByIdAndUpdate(id, teste)
+    return Restaurant.findByIdAndUpdate(id, restaurantData)
       .then(result => defaultResponse(result))
       .catch(error => errorResponse(error.message));
   }

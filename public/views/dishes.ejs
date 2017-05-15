@@ -1,37 +1,37 @@
 <%- contentFor('body') %>
-<section id='dishes' class='wrapper'>
+<section id='dishes' class='wrapper' ng-controller='dishesController'>
   <h1 class='title'>Pratos</h1>
 
   <form>
-    <button>
+    <button id="open-popup">
       Cadastrar novo Prato
     </button>
   </form>
 
-  <div class='table'>
+  <div class='table' ng-show='items'>
     <p>Restaurante</p>
     <p>Prato</p>
     <p>Preço</p>
     <ul>
-      <li>
+      <li ng-repeat='item in items'>
         <div class='content'>
           <div class='buttons'>
-            <button>
+            <button ng-click='delete(item._id)'>
               <img src='dist/img/clear.svg'>
             </button>
-            <button>
+            <button ng-click="edit(item._id, item.name, item.restaurant._id)">
               <img src='dist/img/edit.svg'>
             </button>
           </div>
 
           <div class='text'>
-            <span>Lorem daidawidawiwadi iawdidwai didwai dwaidwaiawdi dadwd awdw dawdawdwadawdaw aw ddwa 123321312 3213213 21321132132 </span>
+            <span>{{ item.restaurant.name }}</span>
           </div>
           <div class='text'>
-            <span>Lorem daidawidawiwadi iawdidwai didwai dwaidwaiawdi</span>
+            <span>{{ item.name }}</span>
           </div>
           <div class='text'>
-            <span>Lorem daidawidawiwadi iawdidwai didwai dwaidwaiawdi</span>
+            <span>{{ item.price }}</span>
           </div>
         </div>
       </li>
@@ -45,29 +45,36 @@
             <div class="wrapper">
               <h1>Cadastro de Pratos</h1>
 
-              <form>
+              <form name='dishesForm'>
                 <p>
-                  <select name="restaurant-list">
+                  <select name="restaurant-list"
+                    ng-model="selected"
+                    ng-options="restaurant.name for restaurant in restaurants"
+                    ng-change="setRestaurant(selected)" ng-required="true">
                     <option value=''>Selecione um restaurante</option>
                   </select>
                 </p>
 
                 <p>
-                  <input type="text" name="add" id="add" ng-model="restaurant.add" ng-required="true"/>
-                  <label for="name" class="placeholder">Nome do Restaurante</label>
+                  <input type="text" name="add" id="add" ng-model="dishes.name" ng-required="true"/>
+                  <label for="name" class="placeholder">Nome do prato</label>
                 </p>
 
                 <p>
-                  <input type="text" name="add" id="add" ng-model="restaurant.add" ng-required="true"/>
+                  <input type="text" name="add" id="add" ng-model="dishes.price" ng-required="true"/>
                   <label for="name" class="placeholder">Preço (R$)</label>
                 </p>
 
-                <button class='cancel'>
+                <button class='cancel' ng-click='cancel($event)'>
                   Cancelar
                 </button>
 
-                <button class='save'>
+                <button class='save' ng-class="{ invalid: dishesForm.$invalid }" ng-click='add(dishes)' ng-show='!dishes._id'>
                   Salvar
+                </button>
+
+                <button class='save' ng-class="{ invalid: dishesForm.$invalid }" ng-click='update(dishes)' ng-show='dishes._id'>
+                  Alterar
                 </button>
               </form>
             </div>
