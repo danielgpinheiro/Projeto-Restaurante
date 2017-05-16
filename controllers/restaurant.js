@@ -1,4 +1,5 @@
 import Restaurant from '../models/restaurant'
+import Dishes from '../models/dishes'
 import HttpStatus from 'http-status'
 
 const defaultResponse = (data, statusCode = HttpStatus.OK) => ({
@@ -13,6 +14,7 @@ const errorResponse = (message, statusCode = HttpStatus.BAD_REQUEST) => defaultR
 class RestaurantController {
   constructor() {
     this.Restaurant = Restaurant
+    this.Dishes = Dishes
   }
 
   getAll() {
@@ -54,7 +56,10 @@ class RestaurantController {
     let id = params.id
 
     return Restaurant.remove({ "_id": id })
-      .then(result => defaultResponse(result))
+      .then(result => {
+        defaultResponse(result)
+        Dishes.findOne({ restaurant: id }).remove().exec()
+      })
       .catch(error => errorResponse(error.message));
   }
 }
