@@ -53,7 +53,9 @@ app.controller("restaurantController", function($scope, $http, $timeout, config,
 	}
 
 	$scope.cancel = function(e) {
-		e.preventDefault()
+		if(e)
+			e.preventDefault()
+
 		$scope.restaurant.name = null
 		$scope.restaurant._id = null
 		popupBehavior('close')

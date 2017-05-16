@@ -13,7 +13,7 @@
     </button>
   </form>
 
-  <div class='table' ng-show="items">
+  <div class='table' ng-show="items.length > 0">
     <ul>
       <li ng-repeat="item in items | filter: restaurant.query | orderBy: name">
         <p>Restaurantes</p>

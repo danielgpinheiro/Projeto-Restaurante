@@ -8,7 +8,7 @@
     </button>
   </form>
 
-  <div class='table' ng-show='items'>
+  <div class='table' ng-show="items.length > 0">
     <p>Restaurante</p>
     <p>Prato</p>
     <p>Preço</p>
@@ -61,7 +61,7 @@
                 </p>
 
                 <p>
-                  <input type="text" name="add" id="add" ng-model="dishes.price" ng-required="true"/>
+                  <input type="text" name="add" id="add" ng-model="dishes.price" ng-required="true" ng-pattern='/[0-9]/'/>
                   <label for="name" class="placeholder">Preço (R$)</label>
                 </p>
 
