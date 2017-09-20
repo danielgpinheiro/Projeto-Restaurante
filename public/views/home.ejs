@@ -1,5 +1,89 @@
 <%- contentFor('body') %>
-<section id='home' class='wrapper'>
-  <img src='dist/img/banner.jpg'/>
-  <h1>Sistema de Cadastro de Restaurantes</h1>
+<section id='home' class='wrapper' ng-controller="homeController">
+  <h1 class='title'>Home</h1>
+
+  <form>
+    <p>
+      <input type="text" name="query" id="query" ng-model="query.email" required/>
+      <label for="name" class="placeholder">Email</label>
+    </p>
+
+    <p>
+      <input type="password" name="query" id="query" ng-model="query.pass" required/>
+      <label for="name" class="placeholder">Senha</label>
+    </p>
+
+    <button id="open-popup">
+      Cadastrar novo Usuário
+    </button>
+
+    <button class="blue" ng-click='login(query)'>
+      Entrar
+    </button>
+  </form>
+
+  <!-- <form>
+    <p>
+      <input type="text" name="query" id="query" ng-model="restaurant.query" required/>
+      <label for="name" class="placeholder">Pesquisar</label>
+    </p>
+
+    <button id="open-popup">
+      Cadastrar novo Restaurante
+    </button>
+  </form>
+
+  <div class='table' ng-show="items.length > 0">
+    <ul>
+      <li ng-repeat="item in items | filter: restaurant.query | orderBy: name">
+        <p>Restaurantes</p>
+        <div class='content'>
+          <div class='buttons'>
+            <button ng-click="delete(item._id)">
+              <img src='dist/img/clear.svg'>
+            </button>
+            <button ng-click="edit(item._id, item.name)">
+              <img src='dist/img/edit.svg'>
+            </button>
+          </div>
+
+          <span>{{ item.name }}</span>
+        </div>
+      </li>
+    </ul>
+  </div> -->
+
+
+  <section class="popup">
+    <div class="container">
+        <div class="inner-content">
+            <div class="wrapper">
+              <h1>Cadastro de Usuário</h1>
+
+              <form name='userForm'>
+                <p>
+                  <input type="text" name="add" id="add" ng-model="user.name" ng-required="true"/>
+                  <label for="name" class="placeholder">Nome do Usuário</label>
+                </p>
+                <p>
+                  <input type="text" name="add" id="add" ng-model="user.email" ng-required="true"/>
+                  <label for="name" class="placeholder">Email do Usuário</label>
+                </p>
+                <p>
+                  <input type="password" name="add" id="add" ng-model="user.pass" ng-required="true"/>
+                  <label for="name" class="placeholder">Senha do Usuário</label>
+                </p>
+
+                <button class='cancel' ng-click='cancel($event)'>
+                  Cancelar
+                </button>
+
+                <button class='save' ng-class="{ invalid: userForm.$invalid }" ng-click='add(user)'>
+                  Salvar
+                </button>
+              </form>
+            </div>
+        </div>
+    </div>
+  </section>
 </section>
