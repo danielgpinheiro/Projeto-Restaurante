@@ -5,6 +5,7 @@ export default(app) => {
 
   app.route('/')
     .get((req, res) => {
+      req.session.destroy()
     	res.render('views/home')
     })
 

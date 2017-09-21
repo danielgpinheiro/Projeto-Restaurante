@@ -16,14 +16,14 @@ class HomeController {
     this.User = User
   }
 
-  teste(result) {
-    console.log('d')
+  teste(req, result) {
+    req.session.user = result.name
     return defaultResponse(result)
   }
 
   login(req) {
-    return User.findOne({ email: req.body.params.email, pass: req.body.params.pass })
-      .then(result => this.teste(result))
+    return User.findOne({ email: req.body.email, pass: req.body.pass })
+      .then(result => this.teste(req, result))
       .catch(error => errorResponse(error.message));
   }
 

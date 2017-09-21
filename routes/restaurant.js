@@ -6,7 +6,11 @@ export default(app) => {
 
   app.route('/restaurant')
     .get((req, res) => {
-    	res.render('views/restaurant')
+      if(req.session.user) {
+    	   res.render('views/restaurant')
+      } else {
+        res.redirect('/')
+      }
     })
     .post((req, res) => {
       restaurantController.add(req.body)

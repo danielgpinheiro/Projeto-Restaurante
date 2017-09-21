@@ -5,7 +5,11 @@ export default(app) => {
 
   app.route('/dishes')
     .get((req, res) => {
-    	res.render('views/dishes')
+      if(req.session.user) {
+    	   res.render('views/dishes')
+      } else {
+        res.redirect('/')
+      }
     })
     .post((req, res) => {
       dishesController.add(req.body)
